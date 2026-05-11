@@ -1,0 +1,96 @@
+﻿@page
+@model Details
+@{
+    ViewData["Title"] = "Game Details";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-page="/Games/Index" class="text-decoration-none">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Details</li>
+                </ol>
+            </nav>
+
+            @if (Model.Game == null)
+            {
+                <div class="alert alert-danger shadow-sm border-0 d-flex align-items-center" role="alert">
+                    <div>
+                        <strong>Error:</strong> No game data was found. Please return to the library.
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <a asp-page="/Games/Index" class="btn btn-secondary">Back to Library</a>
+                </div>
+            }
+            else
+            {
+                <div class="card shadow border-0 overflow-hidden">
+                    <div class="bg-primary" style="height: 6px;"></div>
+                    
+                    <div class="card-body p-4 p-md-5">
+                        <div class="text-center mb-4">
+                            <h1 class="display-5 fw-bold text-dark mb-2">@Model.Game.Title</h1>
+                            <span class="badge bg-light text-primary border border-primary px-3 py-2 rounded-pill fw-normal">
+                                @Model.Game.Genre
+                            </span>
+                        </div>
+
+                        <hr class="my-4 opacity-10">
+
+                        <div class="row g-4">
+                            <div class="col-6">
+                                <label class="text-uppercase text-muted small fw-bold d-block mb-1">Release Year</label>
+                                <p class="fs-5 fw-medium text-dark">@Model.Game.Year</p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <label class="text-uppercase text-muted small fw-bold d-block mb-1">User Score</label>
+                                <p class="fs-5 fw-bold @(Model.Game.Score >= 8 ? "text-success" : "text-warning")">
+                                    @Model.Game.Score.ToString("F1") / 10
+                                </p>
+                            </div>
+                            <div class="col-12">
+                                <label class="text-uppercase text-muted small fw-bold d-block mb-1">Description</label>
+                                <p class="text-secondary lh-base bg-light p-3 rounded border-start border-4 border-primary">
+                                    @Model.Game.Description
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 d-flex gap-2">
+                            <a asp-page="/Games/Edit" asp-route-id="@Model.Game.Id" class="btn btn-primary flex-grow-1 fw-bold">
+                                Edit Details
+                            </a>
+                            <a asp-page="/Index" class="btn btn-outline-secondary px-4">
+                                Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom details */
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+    
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+    }
+
+    .card {
+        border-radius: 15px;
+    }
+
+    /* Description visual effect */
+    .border-left-primary {
+        border-left: 4px solid #0d6efd !important;
+    }
+</style>

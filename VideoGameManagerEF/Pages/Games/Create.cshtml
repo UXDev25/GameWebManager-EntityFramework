@@ -1,0 +1,99 @@
+﻿@page
+@model CreateModel
+
+@{
+    ViewData["Title"] = "Add New Game";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-page="/Games/Index" class="text-decoration-none">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add New Game</li>
+                </ol>
+            </nav>
+
+            <div class="card shadow border-0">
+                <div class="card-header bg-success py-3">
+                    <h4 class="mb-0 text-white text-center fw-bold">Register New Game</h4>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger border-0 shadow-sm mb-4" role="alert"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Game.Title" class="form-label fw-bold text-secondary">Title</label>
+                            <input asp-for="Game.Title" class="form-control form-control-lg" placeholder="Enter game title" />
+                            <span asp-validation-for="Game.Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Game.Genre" class="form-label fw-bold text-secondary">Genre</label>
+                                <input asp-for="Game.Genre" class="form-control" placeholder="e.g. RPG" />
+                                <span asp-validation-for="Game.Genre" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Game.Year" class="form-label fw-bold text-secondary">Release Year</label>
+                                <input asp-for="Game.Year" class="form-control" placeholder="YYYY" />
+                                <span asp-validation-for="Game.Year" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Game.Score" class="form-label fw-bold text-secondary">Score (0.0 - 10.0)</label>
+                            <input asp-for="Game.Score" class="form-control" placeholder="Enter rating" />
+                            <span asp-validation-for="Game.Score" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Game.Description" class="form-label fw-bold text-secondary">Description</label>
+                            <textarea asp-for="Game.Description" class="form-control" rows="3" placeholder="Write a short summary..."></textarea>
+                            <span asp-validation-for="Game.Description" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg fw-bold">Save Game</button>
+                            <a asp-page="/Index" class="btn btn-outline-secondary">Cancel and Return</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4 text-muted small">
+                Make sure all fields are correctly filled before saving.
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<style>
+    /* Custom styles to enhance the UI */
+    .card {
+        border-radius: 1rem;
+    }
+    
+    .form-control:focus {
+        border-color: #198754;
+        box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+    }
+</style>

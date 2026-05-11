@@ -1,0 +1,114 @@
+﻿@page
+@model VideoGameManager.Pages.Files.IndexSave
+
+@{
+    ViewData["Title"] = "Data Management";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4">Data Management System</h1>
+
+    <div class="row">
+        <div class="col-md-5 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Modification Log</h5>
+                </div>
+                <div class="card-body bg-light" style="max-height: 500px; overflow-y: auto;">
+                    @if (Model.GamesLog == null || !Model.GamesLog.Any())
+                    {
+                        <div class="text-center py-5">
+                            <p class="text-muted">No modifications have been recorded yet.</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var line in Model.GamesLog)
+                            {
+                                <div class="list-group-item bg-white mb-2 shadow-sm border-left-info">
+                                    <small class="text-monospace text-dark">@line</small>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">File Operations</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="alert alert-danger shadow-sm mb-4"></div>
+
+                        <div class="mb-5">
+                            <h6 class="text-uppercase text-muted fw-bold mb-3">Import Data</h6>
+                            <div class="p-4 border rounded bg-light">
+                                <label class="form-label">Select JSON File</label>
+                                <div class="input-group">
+                                    <input type="file" asp-for="GamesFile" class="form-control">
+                                    <button class="btn btn-primary px-4" type="submit" asp-page-handler="Import">
+                                        Upload JSON
+                                    </button>
+                                </div>
+                                <div class="form-text mt-2">Only .json files are supported for import.</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h6 class="text-uppercase text-muted fw-bold mb-3">Export & Download</h6>
+                            
+                            <div class="list-group border-0">
+                                <div class="list-group-item d-flex justify-content-between align-items-center mb-2 border rounded shadow-sm">
+                                    <div>
+                                        <div class="fw-bold">JSON Format</div>
+                                        <small class="text-muted">Standard data interchange format</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="Export">
+                                        Download
+                                    </button>
+                                </div>
+
+                                <div class="list-group-item d-flex justify-content-between align-items-center mb-2 border rounded shadow-sm">
+                                    <div>
+                                        <div class="fw-bold">CSV Format</div>
+                                        <small class="text-muted">Compatible with Excel and Sheets</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="CsvExport">
+                                        Download
+                                    </button>
+                                </div>
+
+                                <div class="list-group-item d-flex justify-content-between align-items-center border-primary border-2 rounded shadow-sm">
+                                    <div>
+                                        <div class="fw-bold text-primary">Score Ranking (XML)</div>
+                                        <small class="text-muted">Sorted automatically by score</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm" asp-page-handler="XmlExport">
+                                        Download XML
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom border for the log entries */
+    .border-left-info {
+        border-left: 4px solid #17a2b8 !important;
+    }
+    
+    /* Improve button hover appearance */
+    .btn-sm {
+        min-width: 100px;
+    }
+</style>

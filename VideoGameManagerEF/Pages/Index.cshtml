@@ -1,0 +1,108 @@
+﻿@page
+@model VideoGameManager.Games.IndexModel
+@{
+    ViewData["Title"] = "Game Collection";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-3 fw-bold text-primary">Video Game Manager</h1>
+        <p class="lead text-secondary">Organize and manage your personal game library with ease.</p>
+        <hr class="w-25 mx-auto border-2 border-primary">
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0 fw-bold text-dark">
+                        @if (Model.Games.Count == 0)
+                        {
+                            <span>No Games Found</span>
+                        }
+                        else
+                        {
+                            <span>Registered Games (@Model.Games.Count)</span>
+                        }
+                    </h4>
+                    <a asp-page="/Games/Create" class="btn btn-success px-4 fw-bold">Add New Game</a>
+                </div>
+                
+                <div class="card-body p-0">
+                    @if (Model.Games.Count == 0)
+                    {
+                        <div class="text-center py-5">
+                            <p class="text-muted fs-5">Your library is currently empty. Start by adding your first game!</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-4">Title</th>
+                                        <th>Genre</th>
+                                        <th class="text-center">Year</th>
+                                        <th class="text-center">Score</th>
+                                        <th>Description</th>
+                                        <th class="text-center pe-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var game in Model.Games)
+                                {
+                                    <tr>
+                                        <td class="ps-4 fw-bold text-dark">@game.Title</td>
+                                        <td><span class="badge bg-info text-dark fw-normal">@game.Genre</span></td>
+                                        <td class="text-center">@game.Year</td>
+                                        <td class="text-center">
+                                            <span class="fw-bold @(game.Score >= 8 ? "text-success" : "text-warning")">
+                                                @game.Score.ToString("F1")
+                                            </span>
+                                        </td>
+                                        <td>@game.Description</td>
+                                        <td class="text-center pe-4">
+                                            <div class="btn-group btn-group-sm">
+                                                <a asp-page="/Games/Details" asp-route-id="@game.Id" class="btn btn-outline-secondary">Details</a>
+                                                <a asp-page="/Games/Edit" asp-route-id="@game.Id" class="btn btn-outline-primary">Edit</a>
+                                                <a asp-page="/Games/Delete" asp-route-id="@game.Id" class="btn btn-outline-danger">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.03);
+        transition: background-color 0.2s ease;
+    }
+
+    .text-truncate {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+</style>
