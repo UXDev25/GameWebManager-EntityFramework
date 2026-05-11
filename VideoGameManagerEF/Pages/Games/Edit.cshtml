@@ -1,6 +1,5 @@
 ﻿@page
-@using VideoGameManager.Models
-@model EditModel
+@model VideoGameManagerEF.Pages.Games.EditModel
 
 @{
     ViewData["Title"] = "Edit Game";
@@ -63,7 +62,7 @@
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg fw-bold">Save Changes</button>
-                            <a asp-page="/Index" class="btn btn-outline-secondary">Discard Changes</a>
+                            <a asp-page="/Games/Index" class="btn btn-outline-secondary">Discard Changes</a>
                         </div>
                     </form>
                 </div>

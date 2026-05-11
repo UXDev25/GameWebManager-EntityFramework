@@ -1,5 +1,5 @@
 ﻿@page
-@model VideoGameManager.Games.IndexModel
+@model VideoGameManagerEF.Pages.Games.IndexModel
 @{
     ViewData["Title"] = "Game Collection";
 }
@@ -56,6 +56,7 @@
                                         <td class="ps-4 fw-bold text-dark">@game.Title</td>
                                         <td><span class="badge bg-info text-dark fw-normal">@game.Genre</span></td>
                                         <td class="text-center">@game.Year</td>
+                                        <td class="text-center">@game.Developer</td>
                                         <td class="text-center">
                                             <span class="fw-bold @(game.Score >= 8 ? "text-success" : "text-warning")">
                                                 @game.Score.ToString("F1")

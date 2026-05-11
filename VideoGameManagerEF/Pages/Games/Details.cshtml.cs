@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using VideoGameManager.Models;
 using VideoGameManager.Services;
+using VideoGameManagerEF.Data;
 using VideoGameManagerEF.Services;
 
-namespace VideoGameManager.Pages.Games;
+namespace VideoGameManagerEF.Pages.Games;
 
 public class Details : PageModel
 {
-    private readonly GameService _service;
+    private readonly GameStoreContext _context;
+    public Details(GameStoreContext context) => _context = context;
     public Game? Game { get; set; }
-    public Details(GameService service) => _service = service;
     
     public void OnGet(int id)
     {
-        Game = _service.GetById(id);
+        Game = _context.FindAsync<Game>(id).Result;
     }
-
-    
 }
