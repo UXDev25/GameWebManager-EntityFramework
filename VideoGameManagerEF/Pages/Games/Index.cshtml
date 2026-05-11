@@ -45,7 +45,8 @@
                                         <th>Genre</th>
                                         <th class="text-center">Year</th>
                                         <th class="text-center">Score</th>
-                                        <th>Description</th>
+                                        <th class="text-center">Developer</th>
+                                        <th class="text-center">Description</th>
                                         <th class="text-center pe-4">Actions</th>
                                     </tr>
                                 </thead>
@@ -56,12 +57,12 @@
                                         <td class="ps-4 fw-bold text-dark">@game.Title</td>
                                         <td><span class="badge bg-info text-dark fw-normal">@game.Genre</span></td>
                                         <td class="text-center">@game.Year</td>
-                                        <td class="text-center">@game.Developer</td>
                                         <td class="text-center">
                                             <span class="fw-bold @(game.Score >= 8 ? "text-success" : "text-warning")">
                                                 @game.Score.ToString("F1")
                                             </span>
                                         </td>
+                                        <td class="text-center">@game.Developer.Name</td>
                                         <td>@game.Description</td>
                                         <td class="text-center pe-4">
                                             <div class="btn-group btn-group-sm">
