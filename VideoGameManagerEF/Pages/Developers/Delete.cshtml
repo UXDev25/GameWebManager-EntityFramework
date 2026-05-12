@@ -1,5 +1,7 @@
 ﻿@page
-@model VideoGameManagerEF.Pages.Games.DeleteModel
+@using Microsoft.EntityFrameworkCore
+@using VideoGameManager.Models
+@model VideoGameManagerEF.Pages.Games.DeleteModelDev
 
 @{
     ViewData["Title"] = "Delete Game";
@@ -24,37 +26,39 @@
                 <div class="card-body p-4 p-md-5">
                     <div class="text-center mb-4">
                         <p class="text-muted text-uppercase small fw-bold mb-2">You are about to remove</p>
-                        <h1 class="display-6 fw-bold text-dark">@Model.Game?.Title</h1>
+                        <h1 class="display-6 fw-bold text-dark">@Model.Developer?.Name</h1>
                     </div>
 
                     <div class="bg-light rounded p-3 mb-4 border">
                         <div class="row small text-secondary">
-                            <div class="col-6 mb-2">
-                                <strong>Genre:</strong> @Model.Game?.Genre
-                            </div>
-                            <div class="col-6 mb-2 text-end">
-                                <strong>Year:</strong> @Model.Game?.Year
+                            <div class="col-12">
+                                <strong>Year:</strong> @Model.Developer.FoundedYear
                             </div>
                             <div class="col-12">
-                                <strong>Developer:</strong> @Model.Game?.Developer?.Name
+                                <strong>Country:</strong> 
+                                <p class="mb-0 text-truncate-2">@Model.Developer.Country</p>
                             </div>
                             <div class="col-12">
-                                <strong>Description:</strong> 
-                                <p class="mb-0 text-truncate-2">@Model.Game?.Description</p>
+                                <strong>Games:</strong> 
+                                @foreach (Game game in Model.Developer.Games)
+                                {
+                                    <p class="mb-0 text-truncate-2">@game.Title</p>
+                                }
                             </div>
                         </div>
                     </div>
 
                     <div class="alert alert-warning border-0 shadow-sm mb-4">
-                        <strong>Warning:</strong> This action cannot be undone. All data associated with this game will be permanently removed.
+                        <strong>Warning:</strong> This action cannot be undone. All data associated with this Developer will be permanently removed.
                     </div>
 
                     <form method="post">
-                        <input type="hidden" asp-for="Game!.Id" />
-                        
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger border-0 shadow-sm mb-4" role="alert"></div>
+                        <input type="hidden" asp-for="Developer!.Id"/>
+
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-danger btn-lg fw-bold">Permanently Delete</button>
-                            <a asp-page="./Index" class="btn btn-outline-secondary">Cancel and Go Back</a>
+                            <a asp-page="/Developers/Index" class="btn btn-outline-secondary">Cancel and Go Back</a>
                         </div>
                     </form>
                 </div>

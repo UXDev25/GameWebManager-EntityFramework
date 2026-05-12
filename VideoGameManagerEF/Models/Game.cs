@@ -27,6 +27,8 @@ public class Game
     public int DeveloperId { get; set; }
     
     public Developer? Developer { get; set; }
+    public string? Platform { get; set; }
+    
     
     
     //Methods

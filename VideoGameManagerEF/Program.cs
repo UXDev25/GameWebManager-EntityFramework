@@ -6,7 +6,10 @@ using VideoGameManagerEF.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddPageRoute("/Games/Index", "");
+});
 builder.Services.AddSingleton<GameService>();
 
 //Register dbContext

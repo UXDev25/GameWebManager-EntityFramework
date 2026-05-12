@@ -1,5 +1,6 @@
 ﻿@page
-@model CreateModel
+@using VideoGameManager.Models
+@model VideoGameManagerEF.Pages.Games.CreateModel
 
 @{
     ViewData["Title"] = "Add New Game";
@@ -56,10 +57,18 @@
                             <textarea asp-for="Game.Description" class="form-control" rows="3" placeholder="Write a short summary..."></textarea>
                             <span asp-validation-for="Game.Description" class="text-danger small"></span>
                         </div>
+                        
+                        <div class="mb-5">
+                            <label asp-for="Game.DeveloperId" class="form-label fw-bold text-secondary">Developer</label>
+                            <select asp-for="Game.DeveloperId" class="form-select form-select-lg" asp-items="Model.Developers">
+                                <option value="">-- Select Developer --</option>
+                            </select>
+                            <span asp-validation-for="Game.DeveloperId" class="text-danger small"></span>
+                        </div>
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-success btn-lg fw-bold">Save Game</button>
-                            <a asp-page="/Index" class="btn btn-outline-secondary">Cancel and Return</a>
+                            <a asp-page="./Index" class="btn btn-outline-secondary">Cancel and Return</a>
                         </div>
                     </form>
                 </div>

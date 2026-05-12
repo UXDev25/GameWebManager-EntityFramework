@@ -1,42 +1,74 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using VideoGameManager.Models;
+using VideoGameManager.Models.Enums;
 using VideoGameManager.Services;
+using VideoGameManagerEF.Data;
 using VideoGameManagerEF.Services;
 
-namespace VideoGameManager.Pages.Games;
+namespace VideoGameManagerEF.Pages.Games;
 
 public class EditModel: PageModel
 {
-    private readonly GameService _service;
-    public EditModel(GameService service) => _service = service;
-    public List<Game> Games { get; set; } = [];
+    private readonly GameStoreContext _context;
+    public EditModel(GameStoreContext context) => _context = context;
     
     [BindProperty]
     public Game? Game { get; set; }
+    
+    public SelectList DeveloperList { get; set; }
 
-    public void OnGet(int id)
+    public async Task<IActionResult> OnGetAsync(int id)
     {
-        Games = _service.GetAll();
-        Game = _service.GetById(id);
+        Game = _context.FindAsync<Game>(id).Result;
+        if (Game == null)
+        {
+            return NotFound();
+        }
+        await LoadDevelopersAsync();
+
+        return Page();
+
     }
 
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPostAsync()
     {
-        Games = _service.GetAll();
         if (!ModelState.IsValid)
         {
+            await LoadDevelopersAsync();
             return Page();
         }
-        if (Game?.Title == Games.Find(game => game.Title == Game?.Title)?.Title && Game?.Id != Games.Find(game => game.Title == Game?.Title)?.Id)
-        {
-            ModelState.AddModelError(string.Empty, "This game is already on the collection.");
-            return Page();
-        }
+
+        _context.Entry(Game).State = EntityState.Modified;
         
-        Console.WriteLine("Game id at post: " + Game?.Id);
-        if (Game != null) _service.Update(Game);
-        return RedirectToPage("/Index");
+        if (Game != null)
+        {
+            _context.Attach(Game).State = EntityState.Modified;
+            
+            try 
+            {
+                await _context.SaveChangesAsync();
+                FileManager.Append(Game, ECrud.Update);
+                GameRepository.SaveAll(_context.Games.ToList());
+                GameExporter.Append(_context.Games.ToList());
+                GamesRanking.Append(_context.Games.ToList());
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Games.Any(e => e.Id == Game.Id)) return NotFound();
+                else throw;
+            }
+        }
+
+        return RedirectToPage("./Index");
+    }
+    
+    private async Task LoadDevelopersAsync()
+    {
+        var developers = await _context.Developers.ToListAsync();
+        DeveloperList = new SelectList(developers, "Id", "Name", Game?.DeveloperId);
     }
 }
 

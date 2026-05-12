@@ -1,6 +1,5 @@
 ﻿@page
-@using VideoGameManager.Models
-@model EditModel
+@model VideoGameManagerEF.Pages.Games.EditModel
 
 @{
     ViewData["Title"] = "Edit Game";
@@ -26,33 +25,41 @@
                 <div class="card-body p-4 p-md-5">
                     <form method="post">
                         <div asp-validation-summary="All" class="alert alert-danger border-0 shadow-sm mb-4" role="alert"></div>
-                        
-                        <input type="hidden" asp-for="Game!.Id" />
+
+                        <input type="hidden" asp-for="Game!.Id"/>
 
                         <div class="mb-3">
                             <label asp-for="Game!.Title" class="form-label fw-bold text-secondary">Game Title</label>
-                            <input asp-for="Game!.Title" class="form-control form-control-lg" />
+                            <input asp-for="Game!.Title" class="form-control form-control-lg"/>
                             <span asp-validation-for="Game!.Title" class="text-danger small"></span>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label asp-for="Game!.Genre" class="form-label fw-bold text-secondary">Genre</label>
-                                <input asp-for="Game!.Genre" class="form-control" />
+                                <input asp-for="Game!.Genre" class="form-control"/>
                                 <span asp-validation-for="Game!.Genre" class="text-danger small"></span>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label asp-for="Game!.Year" class="form-label fw-bold text-secondary">Release Year</label>
-                                <input asp-for="Game!.Year" class="form-control" />
+                                <input asp-for="Game!.Year" class="form-control"/>
                                 <span asp-validation-for="Game!.Year" class="text-danger small"></span>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label asp-for="Game!.Score" class="form-label fw-bold text-secondary">Score Rating</label>
-                            <input asp-for="Game!.Score" class="form-control" />
+                            <input asp-for="Game!.Score" class="form-control"/>
                             <span asp-validation-for="Game!.Score" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Game.DeveloperId" class="form-label fw-bold">Developer</label>
+                            <select asp-for="Game.DeveloperId" class="form-select" asp-items="Model.DeveloperList">
+                                <option value="">-- Select Developer --</option>
+                            </select>
+                            <span asp-validation-for="Game.DeveloperId" class="text-danger"></span>
                         </div>
 
                         <div class="mb-4">
@@ -63,7 +70,7 @@
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg fw-bold">Save Changes</button>
-                            <a asp-page="/Index" class="btn btn-outline-secondary">Discard Changes</a>
+                            <a asp-page="./Index" class="btn btn-outline-secondary">Discard Changes</a>
                         </div>
                     </form>
                 </div>

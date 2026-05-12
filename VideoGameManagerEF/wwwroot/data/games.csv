@@ -2,3 +2,12 @@ Id;Title;Genre;Year;Score;Description
 1;The Legend of Zelda: TotK;Adventure;2023;9.8;Open-world action RPG
 2;Elden Ring;RPG;2022;9.5;Open-world soulslike
 3;Celeste;Platformer;2018;9;Precision platformer
+Id;Title;Genre;Year;Score;Description;DeveloperId;Id;Name;Country;FoundedYear;Platform
+0;The Legend of Zelda: TotK;Adventure;2023;9;fghf;2;0;;;0;
+1;Mario Kart 8;Racing;2014;8.7;;1;0;;;0;
+2;The Witcher 3;RPG;2015;9.5;;2;0;;;0;
+Id;Title;Genre;Year;Score;Description;DeveloperId;Id;Name;Country;FoundedYear;Platform
+0;The Legend of Zelda: TotK;Adventure;2023;9;totk;1;0;;;0;
+1;Mario Kart 8;Racing;2014;8.7;;1;0;;;0;
+2;The Witcher 3;RPG;2015;9.5;;2;0;;;0;
+3;Star fox;Adventure;2026;8;star fox remake;1;0;;;0;;
