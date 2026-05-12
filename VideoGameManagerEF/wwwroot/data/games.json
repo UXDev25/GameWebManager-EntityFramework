@@ -5,7 +5,10 @@
     "Genre": "Adventure",
     "Year": 2023,
     "Score": 9.8,
-    "Description": "Open-world action RPG"
+    "Description": "Open-world action RPG",
+    "DeveloperId": 0,
+    "Developer": null,
+    "Platform": null
   },
   {
     "Id": 2,
@@ -13,7 +16,10 @@
     "Genre": "RPG",
     "Year": 2022,
     "Score": 9.5,
-    "Description": "Open-world soulslike"
+    "Description": "Open-world soulslike",
+    "DeveloperId": 0,
+    "Developer": null,
+    "Platform": null
   },
   {
     "Id": 3,
@@ -21,6 +27,53 @@
     "Genre": "Platformer",
     "Year": 2018,
     "Score": 9,
-    "Description": "Precision platformer"
+    "Description": "Precision platformer",
+    "DeveloperId": 0,
+    "Developer": null,
+    "Platform": null
+  },
+  {
+    "Id": 0,
+    "Title": "The Legend of Zelda: TotK",
+    "Genre": "Adventure",
+    "Year": 2023,
+    "Score": 9,
+    "Description": "fghf",
+    "DeveloperId": 2,
+    "Developer": null,
+    "Platform": null
+  },
+  {
+    "Id": 1,
+    "Title": "Mario Kart 8",
+    "Genre": "Racing",
+    "Year": 2014,
+    "Score": 8.7,
+    "Description": "",
+    "DeveloperId": 1,
+    "Developer": null,
+    "Platform": null
+  },
+  {
+    "Id": 2,
+    "Title": "The Witcher 3",
+    "Genre": "RPG",
+    "Year": 2015,
+    "Score": 9.5,
+    "Description": "",
+    "DeveloperId": 2,
+    "Developer": null,
+    "Platform": null
+  },
+  {
+    "Id": 3,
+    "Title": "Star fox",
+    "Genre": "Adventure",
+    "Year": 2026,
+    "Score": 8,
+    "Description": "star fox remake",
+    "DeveloperId": 1,
+    "Developer": null,
+    "Platform": null
   }
 ]

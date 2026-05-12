@@ -17,11 +17,67 @@
     <Description>Open-world soulslike</Description>
   </Game>
   <Game>
+    <Id>2</Id>
+    <Title>The Witcher 3</Title>
+    <Genre>RPG</Genre>
+    <Year>2015</Year>
+    <Score>9.5</Score>
+    <Description></Description>
+  </Game>
+  <Game>
+    <Id>2</Id>
+    <Title>The Witcher 3</Title>
+    <Genre>RPG</Genre>
+    <Year>2015</Year>
+    <Score>9.5</Score>
+    <Description></Description>
+  </Game>
+  <Game>
     <Id>3</Id>
     <Title>Celeste</Title>
     <Genre>Platformer</Genre>
     <Year>2018</Year>
     <Score>9</Score>
     <Description>Precision platformer</Description>
+  </Game>
+  <Game>
+    <Id>0</Id>
+    <Title>The Legend of Zelda: TotK</Title>
+    <Genre>Adventure</Genre>
+    <Year>2023</Year>
+    <Score>9</Score>
+    <Description>fghf</Description>
+  </Game>
+  <Game>
+    <Id>0</Id>
+    <Title>The Legend of Zelda: TotK</Title>
+    <Genre>Adventure</Genre>
+    <Year>2023</Year>
+    <Score>9</Score>
+    <Description>totk</Description>
+  </Game>
+  <Game>
+    <Id>1</Id>
+    <Title>Mario Kart 8</Title>
+    <Genre>Racing</Genre>
+    <Year>2014</Year>
+    <Score>8.7</Score>
+    <Description></Description>
+  </Game>
+  <Game>
+    <Id>1</Id>
+    <Title>Mario Kart 8</Title>
+    <Genre>Racing</Genre>
+    <Year>2014</Year>
+    <Score>8.7</Score>
+    <Description></Description>
+  </Game>
+  <Game>
+    <Id>3</Id>
+    <Title>Star fox</Title>
+    <Genre>Adventure</Genre>
+    <Year>2026</Year>
+    <Score>8</Score>
+    <Description>star fox remake</Description>
   </Game>
 </VideoGameRanking>
