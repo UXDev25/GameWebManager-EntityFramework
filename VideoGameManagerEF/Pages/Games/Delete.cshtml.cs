@@ -26,6 +26,7 @@ public class DeleteModel : PageModel
         if (Game == null) return Page();
         FileManager.Append(Game, ECrud.Delete);
         _context.Remove(Game);
+        _context.SaveChanges();
         GameRepository.SaveAll(_context.Games.ToList());
         GameExporter.Append(_context.Games.ToList());
         GamesRanking.Append(_context.Games.ToList());
