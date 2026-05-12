@@ -33,6 +33,7 @@ public class CreateModel : PageModel
         GameRepository.SaveAll(_context.Games);
         GameExporter.Append(Game);
         GamesRanking.Append(Game);
+        _context.SaveChanges();
         return RedirectToPage("/Index");
     }
 }

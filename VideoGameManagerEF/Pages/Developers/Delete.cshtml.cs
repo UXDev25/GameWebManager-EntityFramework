@@ -33,6 +33,6 @@ public class DeleteModelDev : PageModel
         }
         _context.Remove(Developer);
         _context.SaveChanges();
-        return RedirectToPage("/Index");
+        return RedirectToPage("/Developers/Index");
     }
 }

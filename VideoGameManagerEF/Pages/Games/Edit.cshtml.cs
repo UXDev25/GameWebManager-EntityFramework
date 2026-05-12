@@ -15,10 +15,12 @@ public class EditModel: PageModel
     
     [BindProperty]
     public Game? Game { get; set; }
+    public List<Developer> Developers { get; set; }
 
     public void OnGet(int id)
     {
         Game = _context.FindAsync<Game>(id).Result;
+        Developers = _context.Developers.ToList();
     }
 
     public IActionResult OnPost()

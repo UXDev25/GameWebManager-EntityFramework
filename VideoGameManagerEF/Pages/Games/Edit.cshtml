@@ -53,6 +53,17 @@
                             <input asp-for="Game!.Score" class="form-control" />
                             <span asp-validation-for="Game!.Score" class="text-danger small"></span>
                         </div>
+                        
+                        <div class="mb-5">
+                            <label>Developer:</label>
+                            <select asp-for="Game!.Developer">
+                                @foreach (var developer in Model.Developers)
+                                {
+                                    <option value="@developer">"@developer.Name"</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Game!.Developer" style="color: red; font-size: 0.9em;"></span>
+                        </div>
 
                         <div class="mb-4">
                             <label asp-for="Game!.Description" class="form-label fw-bold text-secondary">Description</label>
